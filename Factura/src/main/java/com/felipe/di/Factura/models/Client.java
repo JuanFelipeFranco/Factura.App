@@ -8,7 +8,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 @Component
 @RequestScope //en este caso el cliente va tener una expiracion de session cuando se cierra el navegador.
-@JsonIgnoreProperties({"targetSource", "advisors"})
+//@JsonIgnoreProperties({"targetSource", "advisors"})
 public class Client {
     @Value("${client.name}")
     private String name;
