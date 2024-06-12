@@ -1,5 +1,7 @@
 package com.felipe.di.Factura.models;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +18,24 @@ public class Invoice {
     @Autowired
     @Qualifier("default")
     private List<Item> items;
+
+    public Invoice() {
+        System.out.println("Creando el componente de la factura");
+        System.out.println(client);
+        System.out.println(description);
+    }
+
+    @PostConstruct
+    public void init(){
+        System.out.println("Creando el componente de la factura");
+        client.setName(client.getName().concat(" Felipe"));
+        description = description.concat(" del cliente: ").concat(client.getName()).concat(" ").concat(client.getLastname());
+    }
+
+    @PreDestroy
+    public void destroy(){
+        System.out.println("Destruyendo ek componente o bean invoice");
+    }
 
     public Client getClient() {
         return client;
