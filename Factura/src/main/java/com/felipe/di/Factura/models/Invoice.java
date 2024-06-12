@@ -1,6 +1,7 @@
 package com.felipe.di.Factura.models;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +11,10 @@ import java.util.List;
 public class Invoice {
     @Autowired
     private Client client;
-    @Value("${invoice.description}")
+    @Value("${invoice.description.office}")
     private String description;
+    @Autowired
+    @Qualifier("default")
     private List<Item> items;
 
     public Client getClient() {
@@ -36,5 +39,16 @@ public class Invoice {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public int getTotal(){
+//        int total = 0;
+//        for (Item item:items){
+//            total=total + item.getImporte();
+//        }
+        int total =items.stream()
+                .map(item -> item.getImporte())
+                .reduce(0, (sum,importe) -> sum + importe);
+        return total;
     }
 }
