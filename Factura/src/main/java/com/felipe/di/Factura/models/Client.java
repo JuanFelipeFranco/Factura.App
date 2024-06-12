@@ -1,9 +1,14 @@
 package com.felipe.di.Factura.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 @Component
+@RequestScope //en este caso el cliente va tener una expiracion de session cuando se cierra el navegador.
+@JsonIgnoreProperties({"targetSource", "advisors"})
 public class Client {
     @Value("${client.name}")
     private String name;
