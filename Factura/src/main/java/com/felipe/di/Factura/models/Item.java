@@ -4,6 +4,9 @@ public class Item {
     private Product product;
     private Integer quantity;
 
+    public Item() {
+    }
+
     public Item(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
@@ -23,5 +26,9 @@ public class Item {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public int getImporte(){
+        return quantity * product.getPrice();
     }
 }
