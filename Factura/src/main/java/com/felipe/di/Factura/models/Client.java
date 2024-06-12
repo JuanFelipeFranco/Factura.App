@@ -1,5 +1,8 @@
 package com.felipe.di.Factura.models;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Client {
     private String name;
     private String lastname;
